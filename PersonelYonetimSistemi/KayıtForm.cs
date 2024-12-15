@@ -16,7 +16,7 @@ namespace PersonelYonetimSistemi
 {
     public partial class KayıtForm : Form
     {
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=PYSData;Trusted_Connection=True;";
+        string connectionString = @"Server=DESKTOP-VCCOBNG\SQLEXPRESS01;Database=PYS_Data;Trusted_Connection=True;";
 
         public KayıtForm()
         {
