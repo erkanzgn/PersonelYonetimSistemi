@@ -16,7 +16,7 @@ namespace PersonelYonetimSistemi
 {
     public partial class KayıtForm : Form
     {
-        string connectionString = @"Server=DESKTOP-VCCOBNG\SQLEXPRESS01;Database=PYS_Data;Trusted_Connection=True;";
+        string connectionString = @"Server=DESKTOP-D8T97V8\SQLEXPRESS;Database=PYS_Data;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
 
         public KayıtForm()
         {
@@ -32,7 +32,7 @@ namespace PersonelYonetimSistemi
                 try
                 {
                     sqlConnection.Open();
-                    string query = "Select * from users";
+                    string query = "Select * from Tbl_user";
                     SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
                     DataTable dt = new DataTable();
                     sqlDataAdapter.Fill(dt);
@@ -51,7 +51,7 @@ namespace PersonelYonetimSistemi
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show("Bağlantı Hatası :", ex.Message);
+                    MessageBox.Show(ex.Message,"Bağlantı Hatası :" );
                 }
             }
         }
