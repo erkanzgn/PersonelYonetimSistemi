@@ -19,6 +19,7 @@ namespace PersonelYonetimSistemi
         public YöneticiMainForm()
         {
             InitializeComponent();
+
         }
         public YöneticiMainForm(string ad, string email)
         {
@@ -32,26 +33,48 @@ namespace PersonelYonetimSistemi
         {
             //KullanıcıAdLbl.Text=kullanıcıAdı.ToString();
             //EpostaLbl.Text=kullanıcıEmail.ToString();
+            //WelcomeLabel.Text = ZamanKontrolu();
         }
 
         private void ShowUserControl(UserControl userControl)
         {
-            // userControlPersonel1.Visible = false;
+            managerPerfUserControl1.Visible = false;
+            managerPersonelUserControl1.Visible = false;
 
             userControl.Visible = true;
         }
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void CloseUserControl(UserControl userControl)
         {
-            //PersonelYönetimiForm personel = new PersonelYönetimiForm();
-            //personel.Show();
-            //this.Hide();
+            userControl.Visible = false;
 
-            // ShowUserControl(userControlPersonel1);
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private string ZamanKontrolu()
         {
+            DateTime simdikiZaman = DateTime.Now;
+            int saat = simdikiZaman.Hour;
 
+            if (saat >= 5 && saat < 12)
+            {
+                return $"Günaydın! {kullanıcıAdı}";
+            }
+            else if (saat >= 12 && saat < 18)
+            {
+                return $"İyi günler! {kullanıcıAdı}";
+            }
+            else if (saat >= 18 && saat < 24)
+            {
+                return $"İyi akşamlar! {kullanıcıAdı}";
+            }
+            else
+            {
+                return $"İyi geceler! {kullanıcıAdı}";
+            }
+        }
+
+        private void PersonelYonetimBtn_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(managerPersonelUserControl1);
         }
 
         private void ExitPicBox_Click(object sender, EventArgs e)
@@ -59,34 +82,34 @@ namespace PersonelYonetimSistemi
             Application.Exit();
         }
 
-        private void İzinYönetPanel_Click(object sender, EventArgs e)
+        private void minimzedLbl_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void PerformansBtn_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(managerPerfUserControl1);
+        }
+
+        private void AnaPanelSol_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void Raporlamalbl_Click(object sender, EventArgs e)
+        private void managerPersonelUserControl1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
+        private void managerPerfUserControl1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void RaporlamaButonPanel_Paint(object sender, PaintEventArgs e)
+        private void izinveMesaiBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void GotoBackPicBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PerformansPanel_Paint(object sender, PaintEventArgs e)
-        {
-           
+            ShowUserControl(managerIzinUserControl1);
         }
     }
 }

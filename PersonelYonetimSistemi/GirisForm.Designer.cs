@@ -28,7 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GirisForm));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label2 = new Label();
             btnKayıtOl = new Button();
             pictureBox1 = new PictureBox();
@@ -42,21 +47,14 @@
             elipseToolGirisForm = new FormUI.ElipseTool();
             elipseToolpanel = new FormUI.ElipseTool();
             elipseToolkayıt = new FormUI.ElipseTool();
-            elipseToolEposta = new FormUI.ElipseTool();
-            GirisEpostaTxtBox = new TextBox();
-            elipseToolSifre = new FormUI.ElipseTool();
-            GirisSifreTxtBox = new TextBox();
             elipseToolGirisyap = new FormUI.ElipseTool();
-            EpostaPanel = new Panel();
-            elipseEpostaPanel = new FormUI.ElipseTool();
-            elipsSifrePanel = new FormUI.ElipseTool();
-            SifrePanel = new Panel();
-            textBox1 = new TextBox();
             ExitPicBox = new PictureBox();
+            EpostaTextbox = new Guna.UI2.WinForms.Guna2TextBox();
+            SifreTxtBox = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(components);
+            guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             GirisPanel.SuspendLayout();
-            EpostaPanel.SuspendLayout();
-            SifrePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ExitPicBox).BeginInit();
             SuspendLayout();
             // 
@@ -102,7 +100,7 @@
             // 
             lblKullanıcıSifre.AutoSize = true;
             lblKullanıcıSifre.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblKullanıcıSifre.Location = new Point(327, 208);
+            lblKullanıcıSifre.Location = new Point(327, 199);
             lblKullanıcıSifre.Name = "lblKullanıcıSifre";
             lblKullanıcıSifre.Size = new Size(41, 16);
             lblKullanıcıSifre.TabIndex = 27;
@@ -200,88 +198,10 @@
             elipseToolkayıt.CornerRadius = 15;
             elipseToolkayıt.TargetControl = btnKayıtOl;
             // 
-            // elipseToolEposta
-            // 
-            elipseToolEposta.CornerRadius = 15;
-            elipseToolEposta.TargetControl = GirisEpostaTxtBox;
-            // 
-            // GirisEpostaTxtBox
-            // 
-            GirisEpostaTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            GirisEpostaTxtBox.BackColor = Color.FromArgb(235, 235, 245);
-            GirisEpostaTxtBox.BorderStyle = BorderStyle.None;
-            GirisEpostaTxtBox.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            GirisEpostaTxtBox.Location = new Point(-1, 8);
-            GirisEpostaTxtBox.MaxLength = 32;
-            GirisEpostaTxtBox.Multiline = true;
-            GirisEpostaTxtBox.Name = "GirisEpostaTxtBox";
-            GirisEpostaTxtBox.Size = new Size(255, 27);
-            GirisEpostaTxtBox.TabIndex = 52;
-            // 
-            // elipseToolSifre
-            // 
-            elipseToolSifre.CornerRadius = 15;
-            elipseToolSifre.TargetControl = GirisSifreTxtBox;
-            // 
-            // GirisSifreTxtBox
-            // 
-            GirisSifreTxtBox.BackColor = Color.FromArgb(235, 235, 245);
-            GirisSifreTxtBox.BorderStyle = BorderStyle.None;
-            GirisSifreTxtBox.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            GirisSifreTxtBox.Location = new Point(-1, 8);
-            GirisSifreTxtBox.MaxLength = 32;
-            GirisSifreTxtBox.Multiline = true;
-            GirisSifreTxtBox.Name = "GirisSifreTxtBox";
-            GirisSifreTxtBox.PasswordChar = '*';
-            GirisSifreTxtBox.Size = new Size(255, 27);
-            GirisSifreTxtBox.TabIndex = 53;
-            // 
             // elipseToolGirisyap
             // 
             elipseToolGirisyap.CornerRadius = 15;
             elipseToolGirisyap.TargetControl = GirisYapBtn;
-            // 
-            // EpostaPanel
-            // 
-            EpostaPanel.BackColor = Color.FromArgb(235, 235, 245);
-            EpostaPanel.Controls.Add(GirisEpostaTxtBox);
-            EpostaPanel.Location = new Point(327, 139);
-            EpostaPanel.Name = "EpostaPanel";
-            EpostaPanel.Size = new Size(254, 40);
-            EpostaPanel.TabIndex = 59;
-            // 
-            // elipseEpostaPanel
-            // 
-            elipseEpostaPanel.CornerRadius = 15;
-            elipseEpostaPanel.TargetControl = EpostaPanel;
-            // 
-            // elipsSifrePanel
-            // 
-            elipsSifrePanel.CornerRadius = 15;
-            elipsSifrePanel.TargetControl = SifrePanel;
-            // 
-            // SifrePanel
-            // 
-            SifrePanel.BackColor = Color.FromArgb(235, 235, 245);
-            SifrePanel.Controls.Add(textBox1);
-            SifrePanel.Controls.Add(GirisSifreTxtBox);
-            SifrePanel.Location = new Point(326, 227);
-            SifrePanel.Name = "SifrePanel";
-            SifrePanel.Size = new Size(254, 40);
-            SifrePanel.TabIndex = 60;
-            // 
-            // textBox1
-            // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            textBox1.BackColor = Color.FromArgb(235, 235, 245);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            textBox1.Location = new Point(-1, 7);
-            textBox1.MaxLength = 32;
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(255, 0);
-            textBox1.TabIndex = 52;
             // 
             // ExitPicBox
             // 
@@ -294,15 +214,73 @@
             ExitPicBox.TabStop = false;
             ExitPicBox.Click += ExitPicBox_Click;
             // 
+            // EpostaTextbox
+            // 
+            EpostaTextbox.BorderThickness = 0;
+            EpostaTextbox.CustomizableEdges = customizableEdges3;
+            EpostaTextbox.DefaultText = "";
+            EpostaTextbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            EpostaTextbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            EpostaTextbox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            EpostaTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            EpostaTextbox.FillColor = Color.FromArgb(236, 235, 254);
+            EpostaTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            EpostaTextbox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            EpostaTextbox.ForeColor = Color.FromArgb(64, 64, 64);
+            EpostaTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            EpostaTextbox.Location = new Point(327, 140);
+            EpostaTextbox.Margin = new Padding(4);
+            EpostaTextbox.Name = "EpostaTextbox";
+            EpostaTextbox.PasswordChar = '\0';
+            EpostaTextbox.PlaceholderText = "";
+            EpostaTextbox.SelectedText = "";
+            EpostaTextbox.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            EpostaTextbox.Size = new Size(252, 43);
+            EpostaTextbox.TabIndex = 62;
+            // 
+            // SifreTxtBox
+            // 
+            SifreTxtBox.BorderThickness = 0;
+            SifreTxtBox.CustomizableEdges = customizableEdges1;
+            SifreTxtBox.DefaultText = "";
+            SifreTxtBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            SifreTxtBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            SifreTxtBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            SifreTxtBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            SifreTxtBox.FillColor = Color.FromArgb(236, 235, 254);
+            SifreTxtBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            SifreTxtBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            SifreTxtBox.ForeColor = Color.FromArgb(64, 64, 64);
+            SifreTxtBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            SifreTxtBox.Location = new Point(327, 219);
+            SifreTxtBox.Margin = new Padding(4);
+            SifreTxtBox.Name = "SifreTxtBox";
+            SifreTxtBox.PasswordChar = '*';
+            SifreTxtBox.PlaceholderText = "";
+            SifreTxtBox.SelectedText = "";
+            SifreTxtBox.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            SifreTxtBox.Size = new Size(252, 47);
+            SifreTxtBox.TabIndex = 63;
+            // 
+            // guna2Elipse1
+            // 
+            guna2Elipse1.BorderRadius = 15;
+            guna2Elipse1.TargetControl = EpostaTextbox;
+            // 
+            // guna2Elipse2
+            // 
+            guna2Elipse2.BorderRadius = 15;
+            guna2Elipse2.TargetControl = SifreTxtBox;
+            // 
             // GirisForm
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoValidate = AutoValidate.EnablePreventFocusChange;
             BackColor = Color.White;
             ClientSize = new Size(609, 428);
+            Controls.Add(SifreTxtBox);
+            Controls.Add(EpostaTextbox);
             Controls.Add(ExitPicBox);
-            Controls.Add(SifrePanel);
-            Controls.Add(EpostaPanel);
             Controls.Add(GirisPanel);
             Controls.Add(labelGirisYap);
             Controls.Add(lblKullanıcıSifre);
@@ -319,10 +297,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             GirisPanel.ResumeLayout(false);
             GirisPanel.PerformLayout();
-            EpostaPanel.ResumeLayout(false);
-            EpostaPanel.PerformLayout();
-            SifrePanel.ResumeLayout(false);
-            SifrePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ExitPicBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -342,16 +316,11 @@
         private FormUI.ElipseTool elipseToolGirisForm;
         private FormUI.ElipseTool elipseToolpanel;
         private FormUI.ElipseTool elipseToolkayıt;
-        private FormUI.ElipseTool elipseToolEposta;
-        private FormUI.ElipseTool elipseToolSifre;
         private FormUI.ElipseTool elipseToolGirisyap;
-        private Panel SifrePanel;
-        private TextBox textBox1;
-        private Panel EpostaPanel;
-        private TextBox GirisEpostaTxtBox;
-        private TextBox GirisSifreTxtBox;
-        private FormUI.ElipseTool elipseEpostaPanel;
-        private FormUI.ElipseTool elipsSifrePanel;
         private PictureBox ExitPicBox;
+        private Guna.UI2.WinForms.Guna2TextBox SifreTxtBox;
+        private Guna.UI2.WinForms.Guna2TextBox EpostaTextbox;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse2;
     }
 }

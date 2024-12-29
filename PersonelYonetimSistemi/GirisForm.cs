@@ -6,7 +6,8 @@ namespace PersonelYonetimSistemi
 {
     public partial class GirisForm : Form
     {
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=PYSData;Trusted_Connection=True;";
+        string connectionString = @"Server=DESKTOP-D8T97V8\SQLEXPRESS;Database=PersonelSistemiData;TrustServerCertificate=True;";
+         
 
         public GirisForm()
         {
@@ -19,20 +20,18 @@ namespace PersonelYonetimSistemi
             KayýtForm kayýtForm = new KayýtForm();
             kayýtForm.Show();
             this.Hide();
-
-
         }
 
         private void chcBoxSifreGoster_CheckedChanged(object sender, EventArgs e)
         {
-            GirisSifreTxtBox.PasswordChar = chcBoxSifreGoster.Checked ? '\0' : '*';
+            SifreTxtBox.PasswordChar = chcBoxSifreGoster.Checked ? '\0' : '*';
         }
 
 
         private void GirisYapBtn_Click(object sender, EventArgs e)
         {
-            //string email = GirisEpostaTxtBox.Text.Trim();
-            //string sifre = GirisSifreTxtBox.Text.Trim();
+            //string email = EpostaTextbox.Text.Trim();
+            //string sifre = SifreTxtBox.Text.Trim();
 
             //if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(sifre))
             //{
@@ -47,7 +46,7 @@ namespace PersonelYonetimSistemi
             //        conn.Open();
 
             //        // Kullanýcý bilgilerini sorgula
-            //        string query = "SELECT Ad, Email FROM Users WHERE Email = @Email AND Sifre = @Sifre";
+            //        string query = "SELECT KullaniciAd, Eposta , Sifre FROM Tbl_Kullanici WHERE Eposta = @Eposta AND Sifre = @Sifre" ;
             //        SqlCommand command = new SqlCommand(query, conn);
             //        command.Parameters.AddWithValue("@Email", email);
             //        command.Parameters.AddWithValue("@Sifre", sifre);
@@ -56,11 +55,11 @@ namespace PersonelYonetimSistemi
 
             //        if (reader.Read())
             //        {
-            //            string kullanýcýAdý = reader["Ad"].ToString();
-            //            string kullanýcýEmail = reader["Email"].ToString();
+            //            string kullanýcýAdý = reader["KullaniciAdi"].ToString();
+            //            string kullanýcýEmail = reader["Eposta"].ToString();
 
             //            // Ana formu açarken bilgileri gönder
-            //            MainForm anaForm = new MainForm(kullanýcýAdý, kullanýcýEmail);
+            //            YöneticiMainForm anaForm = new YöneticiMainForm(kullanýcýAdý, kullanýcýEmail);
             //            anaForm.Show();
             //            this.Hide();
             //        }

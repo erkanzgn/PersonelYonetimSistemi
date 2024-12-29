@@ -16,13 +16,17 @@ namespace PersonelYonetimSistemi
 {
     public partial class KayıtForm : Form
     {
-        string connectionString = @"Server=DESKTOP-D8T97V8\SQLEXPRESS;Database=PYS_Data;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+        string connectionString = @"Server=DESKTOP-D8T97V8\SQLEXPRESS;Database=PersonelSistemiData;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
 
         public KayıtForm()
         {
 
             InitializeComponent();
             LoadDataAsync();
+            KullanıcıAdtxtBox.TabIndex = 0;
+            KullanıcıEpostaTxtBox.TabIndex = 1;
+            KullanıcıSifreTxtBox.TabIndex = 2;
+
         }
 
         public async void LoadDataAsync()
@@ -32,7 +36,7 @@ namespace PersonelYonetimSistemi
                 try
                 {
                     sqlConnection.Open();
-                    string query = "Select * from Tbl_user";
+                    string query = "Select * from Tbl_Kullanici";
                     SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
                     DataTable dt = new DataTable();
                     sqlDataAdapter.Fill(dt);
@@ -51,7 +55,7 @@ namespace PersonelYonetimSistemi
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show(ex.Message,"Bağlantı Hatası :" );
+                    MessageBox.Show(ex.Message, "Bağlantı Hatası :");
                 }
             }
         }
@@ -67,25 +71,25 @@ namespace PersonelYonetimSistemi
 
         private void chcBoxSifreGoster_CheckedChanged(object sender, EventArgs e)
         {
-            KayıtSifreTxtBox.PasswordChar = SifreGosterChkBox.Checked ? '\0' : '*';
+            KullanıcıSifreTxtBox.PasswordChar = SifreGosterChkBox.Checked ? '\0' : '*';
         }
 
         private void KayıtOlBtn_Click(object sender, EventArgs e)
         {
-            
+
             //eposta düzen kontrolu
-            string email = KayıtEpostaTxtBox.Text.Trim();
+            string email = KullanıcıEpostaTxtBox.Text.Trim();
             string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
             string outlookPattern = @"^[a-zA-Z0-9._%+-]+@outlook\.com$";
             string hotmailPattern = @"^[a-zA-Z0-9._%+-]+@hotmail\.com$";
             string icloudPattern = @"^[a-zA-Z0-9._%+-]+@icloud\.com$";
+            string examplePattern = @"^[a-zA-Z0-9._%+-]+@example\.com$";
 
 
 
-            if (KayıtKullanıcıAdıTxtBox.Text == ""
-                || KullanıcıSoyadLbl.Text == ""
-                || KayıtSifreTxtBox.Text == ""
-                || KayıtEpostaTxtBox.Text == "")
+            if (KullanıcıAdtxtBox.Text == ""
+                || SifreGosterChkBox.Text == ""
+                || KullanıcıEpostaTxtBox.Text == "")
             {
                 MessageBox.Show("Lüften Boş Alanları Doldurun!", "Hata !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -93,10 +97,10 @@ namespace PersonelYonetimSistemi
             {
                 //eposta düzen kontrolu
                 if (!Regex.IsMatch(email, gmailPattern) && !Regex.IsMatch(email, outlookPattern) &&
-            !Regex.IsMatch(email, hotmailPattern) && !Regex.IsMatch(email, icloudPattern))
+            !Regex.IsMatch(email, hotmailPattern) && !Regex.IsMatch(email, icloudPattern)&&!Regex.IsMatch(email,examplePattern))
                 {
                     MessageBox.Show("Geçersiz e-posta adresi ", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    KayıtEpostaTxtBox.Focus();
+                    KullanıcıEpostaTxtBox.Focus();
                     return;
 
                 }
@@ -106,11 +110,11 @@ namespace PersonelYonetimSistemi
                     try
                     {
                         conn.Open();
-                        string selectUserQuery = "SELECT COUNT(id) FROM users WHERE Email = @Email";
+                        string selectUserQuery = "SELECT COUNT(KullaniciID) FROM Tbl_Kullanici WHERE Eposta = @Eposta";
                         using (SqlCommand checkUser = new SqlCommand(selectUserQuery, conn))
                         {
 
-                            checkUser.Parameters.AddWithValue("@Email", KayıtEpostaTxtBox.Text.Trim());
+                            checkUser.Parameters.AddWithValue("@Eposta", KullanıcıEpostaTxtBox.Text.Trim());
 
                             int count = (int)checkUser.ExecuteScalar();
                             if (count >= 1)
@@ -121,13 +125,12 @@ namespace PersonelYonetimSistemi
                             else
                             {
 
-                                string insertUserQuery = "INSERT INTO users (Ad, SoyAd, Email, Sifre) VALUES (@Ad, @SoyAd, @Email, @Sifre)";
+                                string insertUserQuery = "INSERT INTO Tbl_Kullanici (KullaniciAdi,Eposta,Sifre) VALUES (@Ad, @Eposta, @Sifre)";
                                 using (SqlCommand command = new SqlCommand(insertUserQuery, conn))
                                 {
-                                    command.Parameters.AddWithValue("@Ad", KayıtKullanıcıAdıTxtBox.Text.Trim());
-                                    command.Parameters.AddWithValue("@SoyAd", KullanıcıSoyAdTxtBox.Text.Trim());
-                                    command.Parameters.AddWithValue("@Email", KayıtEpostaTxtBox.Text.Trim());
-                                    command.Parameters.AddWithValue("@Sifre", KayıtSifreTxtBox.Text.Trim());
+                                    command.Parameters.AddWithValue("@Ad", KullanıcıAdtxtBox.Text.Trim());
+                                    command.Parameters.AddWithValue("@Eposta", KullanıcıEpostaTxtBox.Text.Trim());
+                                    command.Parameters.AddWithValue("@Sifre", KullanıcıSifreTxtBox.Text.Trim());
 
 
                                     command.ExecuteNonQuery();
@@ -140,57 +143,17 @@ namespace PersonelYonetimSistemi
                                 }
                             }
                         }
-
-
+                        conn.Close();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Bağlantı hatası: " + ex.Message);
                     }
-                }
+                 }
+                 
+             }
 
-            }
-
-        }
-
-
-        private void GirisYap(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btnGirisYap_Click(sender, e);
-            }
-        }
-
-        private void KayıtKullanıcıAdıTxtBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Tab)
-            {
-                KullanıcıSoyAdTxtBox.Focus();
-            }
-        }
-        private void KullanıcıSoyAdTxtBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Tab)
-            {
-                KayıtEpostaTxtBox.Focus();
-            }
-        }
-        private void KayıtEpostaTxtBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Tab)
-            {
-                KayıtSifreTxtBox.Focus();
-            }
-        }
-        private void KayıtSifreTxtBox_KeyDown(Object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Tab)
-            {
-                KayıtOlBtn.Focus();
-            }
-        }
-
+         }
         private void KayıtSifreTxtBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -203,7 +166,17 @@ namespace PersonelYonetimSistemi
 
         private void ExitPicBox_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            KayıtForm.ActiveForm.Close();
+        }
+
+        private void lblKullanıcıSifre_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelKayıtEmail_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

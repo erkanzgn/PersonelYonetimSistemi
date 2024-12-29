@@ -91,6 +91,16 @@ namespace FormUI {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] log_out3 {
+            get {
+                object obj = ResourceManager.GetObject("log-out3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap overtime__1_ {
